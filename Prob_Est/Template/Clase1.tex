@@ -1,0 +1,95 @@
+\documentclass{beamer}
+
+\mode<presentation> {
+	\usetheme{Madrid}
+}
+%\usetheme{Malmoe}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+\usepackage{booktabs} 
+
+%\usepackage[latin1]{inputenc}
+%\usepackage[spanish]{babel}
+\usepackage{babel}
+\usepackage{longtable}
+\usepackage{verbatim}
+\usepackage{multicol}
+%\usepackage{textpos}
+
+% grey out past items
+\setbeamercovered{transparent}
+\setbeamercovered{again covered={\opaqueness<1->{30}}}
+
+%Information to be included in the title page:
+\title[Probabilidad y Estadística para ML - C1]{Probabilidad y Estadística para \\Machine Learning}
+\author[P. Briff]{Dr. Ing. Pablo Briff}
+\institute[FIUBA-LSE]
+{Laboratorio de Sistemas Embebidos - FIUBA\\
+	\medskip
+	\textit{pbriff@fi.uba.ar}}
+\date{27 de Junio de 2020}
+\logo{\includegraphics[height=1cm]{../FIUBA_UBA_Logo}}
+
+% define own functions
+\def\code#1{\texttt{#1}}
+
+\begin{document}
+	
+	\frame{\titlepage}
+
+\begin{frame}[allowframebreaks]{Tabla de Contenidos}
+	\tableofcontents[sections={1-2}]
+	\framebreak
+	\tableofcontents[sections={3}]
+\end{frame}
+
+% Presentacion
+\section{Elementos de Probabilidad}
+
+\subsection{Axiomas de Probabilidad}
+
+\begin{frame}{Axiomas de Probabilidad}
+
+\begin{itemize}[<+>]
+	\item Texto 1
+	\item Variable $v_1$
+\end{itemize}
+	
+\end{frame}
+
+\subsection{Probabilidad Condicional}
+
+\begin{frame}{Probabilidad Condicional}
+
+\begin{itemize}[<+>] 
+\item Texto 2
+\item Variable $v_2$
+\end{itemize}
+	
+\end{frame}
+
+\section{Variables Aleatorias}
+
+\subsection{Función de Distribución de Probabilidad}
+
+\begin{frame}{Función de Distribución de Probabilidad}
+
+\begin{itemize}[<+>] 
+	\item Texto 3
+\end{itemize}
+	
+\end{frame}
+
+
+\section{Bibliografía}
+% do not show citation in text
+\nocite{alpaydin2020introduction}
+\nocite{mitMathem@misc}
+
+\begin{frame}[allowframebreaks]{Bibliografía}
+	\bibliographystyle{ieeetr}
+	\bibliography{../prob_est_ml.bib}
+
+\end{frame}
+
+\end{document}
