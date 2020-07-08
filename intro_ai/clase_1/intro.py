@@ -23,6 +23,7 @@ def power(base, exponent):
     print(hex(id(base)))  # 0x103be3e00
     return base ** exponent
 
+
 a = 10
 exponent = 2
 print(hex(id(a)))  # 0x103be3cc0
@@ -48,20 +49,20 @@ print(t_2)  # (1, ['a', 'b', 'c'])
 
 
 # Mutable types
-list_1 = list([1,2,3,4])
+list_1 = list([1, 2, 3, 4])
 list_2 = list_1
-print(list_2)  # [1,2,3,4]
+print(list_2)  # [1, 2, 3, 4]
 print(hex(id(list_1)))  # 0x105f05a00
 print(hex(id(list_2)))  # 0x105f05a00
 list_1.pop()
 list_2.pop()
-print(list_1) # [1,2]
-print(list_2) # [1,2]
-print(hex(id(list_1))) # 0x105f05a00
+print(list_1)  # [1, 2]
+print(list_2)  # [1, 2]
+print(hex(id(list_1)))  # 0x105f05a00
 
 
 # List
-list_1 = [1,2,3,4]
+list_1 = [1, 2, 3, 4]
 print(type(list_1))  # <class 'list'>
 list_1.append(5)
 for elm in list_1:
@@ -82,7 +83,7 @@ for key, value in dict_1.items():
 
 
 # Set
-set_1 = set([1,2,3,4,1])  # <class 'set'>
+set_1 = {1, 2, 3, 4, 1}  # <class 'set'>
 print(type(set_1))
 for item in set_1:
     print(item)
@@ -123,6 +124,11 @@ print(hex(id(list_2)))  # 0x1060896e0
 list_3 = [item for item in list_2 if item % 2 == 0]
 print(list_3)  # [2, 4, 6]
 print(hex(id(list_3)))  # 0x106020be0
+
+# Set comprehension
+list_1 = ['a', 'b', 'b', 'c', 'c', 'c']
+set_1 = {value for value in enumerate(list_1)}
+# {'a', 'b', 'c'}
 
 # Dict comprehension
 list_1 = ['a','b','c','d','e','f']
