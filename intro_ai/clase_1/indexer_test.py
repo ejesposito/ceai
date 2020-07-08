@@ -8,7 +8,7 @@ from clase_1.indexer import Indexer
 class IndexerTestCase(TestCase):
 
     def test_indexer(self):
-        a = np.array([10,13,14,15], dtype=np.int64)
+        a = np.array([10, 13, 14, 15], dtype=np.int64)
         indexer = Indexer(a)
 
         idxs, valid_idxs = indexer.get_idxs(np.array([13, 10]))
