@@ -1,0 +1,1 @@
+% numero de puntosN=1000;% simular una variable aleatoria uniformeX = rand(N,1);%  simular una variable exponencial con el metodo de la transformada inversalambda = 1;Y = (-1/lambda)*log(X);h = hist(Y,100);% normalizar el histogramah = h / sum(h);   bar(h);   legend('show');
