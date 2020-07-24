@@ -334,13 +334,14 @@ if __name__ == '__main__':
     # PLOTS
     fig = plt.figure()
     x_plot = np.linspace(1, 4, 4)
+    legend = ['GD', 'GD(B)', 'S-GD(B)', 'MB-GD(B)']
 
     plt.subplot(1, 3, 1)
     plt.gca().set_title('Learning Rate')
     y_plot = [lr_1, lr_2, lr_3, lr_4]
     plt.plot(x_plot[0], y_plot[0], 'o', x_plot[1], y_plot[1], 'o', x_plot[2], y_plot[2], 'o',
              x_plot[3], y_plot[3], 'o')
-    plt.legend(['GD', 'GD(B)', 'S-GD(B)', 'MB-GD(B)'])
+    plt.legend(legend)
     for x, y in zip(x_plot, y_plot):
         plt.text(x, y, str(y))
 
@@ -349,7 +350,7 @@ if __name__ == '__main__':
     y_plot = [amt_epochs_1, amt_epochs_2, amt_epochs_3, amt_epochs_4]
     plt.plot(x_plot[0], y_plot[0], 'o', x_plot[1], y_plot[1], 'o', x_plot[2], y_plot[2], 'o',
              x_plot[3], y_plot[3], 'o')
-    plt.legend(['GD', 'GD(B)', 'S-GD(B)', 'MB-GD(B)'])
+    plt.legend(legend)
     for x, y in zip(x_plot, y_plot):
         plt.text(x, y, str(y))
 
@@ -358,7 +359,7 @@ if __name__ == '__main__':
     y_plot = [time_1, time_2, time_3, time_4]
     plt.plot(x_plot[0], y_plot[0], 'o', x_plot[1], y_plot[1], 'o', x_plot[2], y_plot[2], 'o',
              x_plot[3], y_plot[3], 'o')
-    plt.legend(['GD', 'GD(B)', 'S-GD(B)', 'MB-GD(B)'])
+    plt.legend(legend)
     for x, y in zip(x_plot, y_plot):
         plt.text(x, y, str(y))
 
