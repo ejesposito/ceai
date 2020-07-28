@@ -138,28 +138,19 @@ def gradient_descent(X_train, y_train, lr=0.01, amt_epochs=100):
     """
     n = X_train.shape[0]
     m = X_train.shape[1]
-    print('X.shape: {} x {} \n'.format(n, m))
 
     # initialize random weights
     W = np.random.randn(m).reshape(m, 1)
-    # W = np.random.uniform(0, 1, (m, 1))
-    # W = np.array([0.70, 0.2]).reshape(m, 1)
-    print('W_inicial: {}'.format(W.reshape(-1)))
 
     for i in range(amt_epochs):
         prediction = np.matmul(X_train, W)  # nx1
-        # print('pred', prediction.shape)
         error = y_train - prediction  # nx1
-        # print('error', error.shape)
 
         grad_sum = np.sum(error * X_train, axis=0)
         grad_mul = -2/n * grad_sum  # 1xm
         gradient = np.transpose(grad_mul).reshape(-1, 1)  # mx1
-        # print('grad', gradient.shape)
 
         W = W - (lr * gradient)
-        # print('w', W.shape)
-        # print('W_intermedio: ', W)
 
     return W
 
@@ -173,13 +164,9 @@ def stochastic_gradient_descent(X_train, y_train, lr=0.01, amt_epochs=100):
     """
     n = X_train.shape[0]
     m = X_train.shape[1]
-    print('X.shape: {} x {} \n'.format(n, m))
 
     # initialize random weights
     W = np.random.randn(m).reshape(m, 1)
-    # W = np.random.uniform(0, 1, (m, 1))
-    # W = np.array([0.70, 0.2]).reshape(m, 1)
-    print('W_inicial: {}'.format(W.reshape(-1)))
 
     for i in range(amt_epochs):
         idx = np.random.permutation(X_train.shape[0])
@@ -188,18 +175,13 @@ def stochastic_gradient_descent(X_train, y_train, lr=0.01, amt_epochs=100):
 
         for j in range(n):
             prediction = np.matmul(X_train[j].reshape(1, -1), W)  # 1x1
-            # print('pred', prediction.shape)
             error = y_train[j] - prediction  # 1x1
-            # print('error', error.shape)
 
             grad_sum = error * X_train[j]
             grad_mul = -2/n * grad_sum  # 2x1
             gradient = np.transpose(grad_mul).reshape(-1, 1)  # 2x1
-            # print('grad', gradient.shape)
 
             W = W - (lr * gradient)
-            # print('w', W.shape)
-            # print('W_intermedio: ', W)
 
     return W
 
@@ -214,15 +196,9 @@ def mini_batch_gradient_descent(X_train, y_train, lr=0.01, amt_epochs=100):
     b = 16
     n = X_train.shape[0]
     m = X_train.shape[1]
-    print('X.shape: {} x {} \n'.format(n, m))
 
     # initialize random weights
     W = np.random.randn(m).reshape(m, 1)
-    # W = np.random.uniform(0, 1, (m, 1))
-    # weights = [np.power(10, i) for i in range(11)][::-1]
-    # W = (np.ones(m) / weights).reshape(-1, 1)
-    # W = np.zeros((m, 1))
-    print('W_inicial: {}'.format(W.reshape(-1)))
 
     for i in range(amt_epochs):
         idx = np.random.permutation(X_train.shape[0])
@@ -236,18 +212,13 @@ def mini_batch_gradient_descent(X_train, y_train, lr=0.01, amt_epochs=100):
             batch_y = y_train[i: end]
 
             prediction = np.matmul(batch_X, W)  # nx1
-            # print('pred', prediction.shape)
             error = batch_y - prediction  # nx1
-            # print('error', error.shape)
 
             grad_sum = np.sum(error * batch_X, axis=0)
             grad_mul = -2/n * grad_sum  # 1xm
             gradient = np.transpose(grad_mul).reshape(-1, 1)  # mx1
-            # print('grad', gradient.shape)
 
             W = W - (lr * gradient)
-            # print('w', W.shape)
-            # print('W_intermedio: ', W)
 
     return W
 
@@ -260,7 +231,6 @@ def sin_fitting_example():
     noise = np.random.normal(0, .1, y.shape)
     noisy_y = y + noise
 
-    # FITTING CURVES
     X_train = x
     y_train = noisy_y
 
@@ -284,11 +254,11 @@ def sin_fitting_example():
     W_cubic = regression.model
     y_cubic = W_cubic[0] * np.power(x, 3) + W_cubic[1] * np.power(x, 2) + W_cubic[2] * x + W_cubic[3]
 
-    # 10
+    # X10
     X_10 = np.vstack((np.power(X_train, 10), np.power(X_train, 9), np.power(X_train, 8),
-                             np.power(X_train, 7), np.power(X_train, 6), np.power(X_train, 5),
-                             np.power(X_train, 4), np.power(X_train, 3), np.power(X_train, 2),
-                             X_train, np.ones(len(X_train)))).T
+                      np.power(X_train, 7), np.power(X_train, 6), np.power(X_train, 5),
+                      np.power(X_train, 4), np.power(X_train, 3), np.power(X_train, 2),
+                      X_train, np.ones(len(X_train)))).T
     regression.fit(X_10, y_train.reshape(-1, 1))
     W_10 = regression.model
     y_10 = W_10[0] * np.power(x, 10) + W_10[1] * np.power(x, 9) + W_10[2] * np.power(x, 8) + \
@@ -303,31 +273,21 @@ def sin_fitting_example():
 
     # original
     plt.plot(x, noisy_y, 'o')
-    wait_for_key()
 
     # linear
     plt.plot(x, y_linear, '-')
-    wait_for_key()
 
     # quadratic
     plt.plot(x, y_quadratic, '-')
-    wait_for_key()
 
     # cubic
     plt.plot(x, y_cubic, '-')
-    wait_for_key()
 
     # 10 power
     plt.plot(x, y_10, '-')
 
     plt.legend(['noisy signal', 'linear', 'quadratic', 'cubic', '10th power'])
     plt.show()
-
-
-def wait_for_key():
-    while True:
-        if plt.waitforbuttonpress():
-            break
 
 
 if __name__ == '__main__':
@@ -355,15 +315,6 @@ if __name__ == '__main__':
     x_plot = np.linspace(0, 10, 10)
     lr_y_plot = linear_regression.model * x_plot
     lrb_y_plot = linear_regression_b.model[0] * x_plot + linear_regression_b.model[1]
-
-    """
-    plt.scatter(X_train, y_train, color='b', label='dataset')
-    plt.plot(x_plot, lr_y_plot, color='m', label=f'LinearRegresion(MSE={lr_mse:.3f})')
-    plt.plot(x_plot, lrb_y_plot, color='r', label=f'LinearRegresionWithB(MSE={lrb_mse:.3f})')
-    plt.plot(X_test, ct_y_hat, color='g', label=f'ConstantModel(MSE={ct_mse:.3f})')
-    plt.legend()
-    plt.show()
-    """
 
     # gradient descent
     print('\n\n\nGRADIENT DESCENT VS LINEAR REGRESSION')
@@ -424,7 +375,6 @@ if __name__ == '__main__':
     plt.legend(legend)
     for x, y in zip(x_plot, y_plot):
         plt.text(x, y, str(y))
-    wait_for_key()
 
     plt.subplot(1, 3, 2)
     plt.gca().set_title('Epochs')
@@ -434,7 +384,6 @@ if __name__ == '__main__':
     plt.legend(legend)
     for x, y in zip(x_plot, y_plot):
         plt.text(x, y, str(y))
-    wait_for_key()
 
     plt.subplot(1, 3, 3)
     plt.gca().set_title('Time')
@@ -444,8 +393,8 @@ if __name__ == '__main__':
     plt.legend(legend)
     for x, y in zip(x_plot, y_plot):
         plt.text(x, y, str(y))
-    wait_for_key()
 
     plt.show()
 
+    # sin fitting example
     sin_fitting_example()
