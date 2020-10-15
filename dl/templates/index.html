@@ -1,0 +1,93 @@
+<!-- templates/index.html -->
+<html>
+  <body>
+
+    <br /><br />
+
+    Mi primer modelo en la nube =)
+
+    <br /><br />
+
+    Fixed acidity: <input type="text" id="fixedAcidity"/><br />
+    Volatile acidity: <input type="text" id="volatileAcidity"/><br />
+    Citric acid: <input type="text" id="citricAcid"/><br />
+    Residual sugar: <input type="text" id="residualSugar"/><br />
+    Chlorides: <input type="text" id="chlorides"/><br />
+    Free sulfur dioxide:  <input type="text" id="freeSulfurDioxide"/><br />
+    Total sulfur dioxide: <input type="text" id="totalSulfurDioxide"/><br />
+    Density: <input type="text" id="density"/><br />
+    pH: <input type="text" id="ph"/><br />
+    sulphates: <input type="text" id="sulphates"/><br />
+    alcohol: <input type="text" id="alcohol"/><br />
+    Es vino rojo: <input type="text" id="redWine"/><br />
+    Es vino blanco: <input type="text" id="whiteWine"/><br />
+    Id del vendedor: <input type="text" id="vendor_id"/><br />
+
+    <br /><br />
+
+    <button id="predict">Predecir</button>
+
+    <br /><br />
+
+    Resultado: <div id="result"></div>
+
+    <script>
+      var button = document.getElementById('predict');
+
+      var fixedAcidity = document.getElementById('fixedAcidity');
+      var volatileAcidity = document.getElementById('volatileAcidity');
+      var citricAcid = document.getElementById('citricAcid');
+      var residualSugar = document.getElementById('residualSugar');
+      var chlorides = document.getElementById('chlorides');
+      var freeSulfurDioxide = document.getElementById('freeSulfurDioxide');
+      var totalSulfurDioxide = document.getElementById('totalSulfurDioxide');
+      var density = document.getElementById('density');
+      var ph = document.getElementById('ph');
+      var sulphates = document.getElementById('sulphates');
+      var alcohol = document.getElementById('alcohol');
+      var redWine = document.getElementById('redWine');
+      var whiteWine = document.getElementById('whiteWine');
+      var vendor_id = document.getElementById('vendor_id');
+
+      var result = document.getElementById('result');
+
+      button.addEventListener('click', function () {
+        var jsonData = {
+          fixedAcidity: fixedAcidity.value,
+          volatileAcidity: volatileAcidity.value,
+          citricAcid: citricAcid.value,
+          residualSugar: residualSugar.value,
+          chlorides: chlorides.value,
+          freeSulfurDioxide: freeSulfurDioxide.value,
+          totalSulfurDioxide: totalSulfurDioxide.value,
+          density: density.value,
+          ph: ph.value,
+          sulphates: sulphates.value,
+          alcohol: alcohol.value,
+          redWine: redWine.value,
+          whiteWine: whiteWine.value,
+          vendor_id: vendor_id.value
+        }
+
+        console.log(JSON.stringify(jsonData))
+
+        fetch('http://localhost:5000/predict', {
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          method: 'post',
+          body: JSON.stringify(jsonData)
+        }).then(function(response) {
+          return response.json();
+        }).then(function(data) {
+          console.log(data);
+          result.innerHTML = data['quality'];
+        });
+
+      });
+
+    </script>
+
+  </body>
+</html>
