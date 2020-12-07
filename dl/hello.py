@@ -14,6 +14,11 @@ cors = CORS(app, resources={r"*": {"origins": "*"}})
 # load the model on server startup
 dl_model = keras.models.load_model('./model_with_embeddings.h5')
 
+print('HOLA MUNDO!!')
+
+# agregar los parametros de la normalización
+
+# agregar los diccionarios que tranforman vendor_id en vendor_idx
 
 @app.route('/')
 def index():
@@ -30,7 +35,7 @@ def test():
     truth = 0
 
     print(dl_model.summary())
-    return 'La verdadera categoria del vino es {} y la predicción es {}'.format(truth, prediction)
+    return 'Mi primer modelo de DL: la verdadera categoria del vino es {} y la predicción es {}'.format(truth, prediction)
 
 
 @app.route('/predict', methods=['POST'])
@@ -43,6 +48,16 @@ def predict():
     # Use the model to get the prediction (0 or 1)
     # Be careful with NaNs, min, max, and data types
     # Transform the prediction and return it to the front-end
-    prediction = 'low'
 
-    return {'quality': prediction}
+    data_x = np.zeros((13))
+    data_vendor_id = np.array([28])
+
+    prediction = dl_model.predict([data_x.reshape(1,-1), data_vendor_id.reshape(1,1)])
+
+    result = None
+    if prediction < 0.5:
+        result = 'low quality wine'
+    else:
+        result = 'high quality wine'
+
+    return {'quality': result}
