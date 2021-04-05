@@ -1,0 +1,1 @@
+%  clase 4 ej2% numero de simulacionesN=1000;% numero de tiradasn = 100;% numero de cecask = 55;% vector de probabilidadesp_vector = linspace(0,1,N);% vector de verosimilitudesP = zeros(N,1);for i=1:N        % vario el vector de probabilidades      p = p_vector(i);        P (i)= nchoosek(n,k) * p^k * (1-p)^(n-k);    endforplot(p_vector,P)
